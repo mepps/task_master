@@ -1,0 +1,14 @@
+<h1>Log In</h1>
+
+<div id="errors"><p><%= flash[:messages] unless flash[:alert] == nil%></p> </div>
+
+
+<form action="/sessions" method="post">
+  	<input type="hidden" name="_method" value="create" />
+	<label>Email Address</label>
+	<input type="text" name="email_address" />
+	<label>Password</label>
+	<input type="password" name="password" />
+	<input type="submit" value="Log In" />
+</form>
+<%= link_to "Register", new_user_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  what: MyText
+  where: MyText
+  how: MyText
+  goal: 
+
+two:
+  what: MyText
+  where: MyText
+  how: MyText
+  goal: 

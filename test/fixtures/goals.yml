@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  goal: MyText
+  date: 2013-09-24
+  user: 
+
+two:
+  goal: MyText
+  date: 2013-09-24
+  user: 

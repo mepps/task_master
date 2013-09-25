@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TaskMaster</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script>
+  $(document).ready(function()
+  {
+	  	$(document).foundation();
+		$('#scope').foundation(); 
+	});
+</script>
+
+</head>
+<body>
+<div id="header">
+	<nav class="top-bar">
+		<ul class="title-area">
+	    	<li class="name"><h1><a href="maggieepps.com">Your TaskMaster</a></h1></li>
+ 		</ul>
+		<section class="top-bar-section">
+		 	<ul class="right">
+		 		<li><a href="/signin">Log In</a></li>
+		 	</ul>
+		</section>
+	</nav>
+</div>
+<div id="wrapper">
+<%= yield %>
+</div>
+</body>
+</html>

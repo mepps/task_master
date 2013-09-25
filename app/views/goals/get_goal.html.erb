@@ -1,0 +1,9 @@
+<div id="goal">
+	<% unless @goal == nil %>
+	<h1>Goal for <span id="date"><%=@goal.date%></span></h1>
+
+
+	<p><a href="/goals/show"><%=@goal.goal%></a></p>
+
+	<% end %>
+</div>

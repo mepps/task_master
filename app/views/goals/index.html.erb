@@ -1,0 +1,26 @@
+<script>
+	$('#goals').addClass('active');
+
+</script>
+<form action="/goals" method="post">
+	<label>Add a Goal</label>
+  	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input type="hidden" name="_method" value="create" /> 
+	<input type="text" name="goal" />
+	<input type="submit" value="Add" />
+</form>
+<div class="section-container accordion" data-section="accordion">
+	<% @goals.each do |goal|%>
+	<section>
+		<p class="title" data-section-title><a href="#"><%=goal.goal%></a></p>
+		<div class="content" data-section-content>
+			<p><ul>
+				<% goal.tasks.each do |task| %>
+				<li><%=task.what%></li>
+				<% end %>
+			</ul></p>
+			<%=link_to 'View Goal', goal %>
+		</div>
+	</section>
+	<% end %>
+</div>

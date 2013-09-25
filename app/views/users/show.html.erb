@@ -1,0 +1,34 @@
+<script>
+	$(document).ready(function(){
+		$('#calendar').addClass('active');
+		$('#goal').hide();
+		$('#pick_date').change(function(){
+			$('#goal').show();
+			var date = $(this).val();
+			var dateArr = date.split("-");
+			date = dateArr[1] + "-" + dateArr[2] + "-" + dateArr[0];
+			$('#date').text(date);
+			$('#input_date').submit()
+
+		});
+		// $('#input_date').submit(function(){
+		// 	return false;
+		// });
+
+	});
+
+</script>
+<form id="input_date" action="/goals/get_goal" data-remote="true" method="post">
+	<input type="date" name="date" id="pick_date" class="datepicker datepicker-dropdown dropdown-menu"></input>
+  	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>
+<div id="goal">
+	<% unless @goal == nil %>
+	<h1>Goal for <span id="date"><%=@goal.date%></span></h1>
+
+
+	<p><a href="/goals/show"><%=@goal.goal%></a></p>
+
+	<% end %>
+</div>
+ 
