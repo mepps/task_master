@@ -19,27 +19,27 @@
 </script>
 <h3><%=@goal.goal%></h3>
 <h3><%=@goal.date.strftime("%m/%d/%Y") %></h3>
-<form id="tasks" action="/goals" method="post">
+<form id="tasks" data-remote="true" action="/goals" method="post">
 	<% @goal.tasks.each do |task| %>
 	<input type="checkbox" class="task" name="task" value="<%=task.id%>" /><a id="<%=task.id%>" class="task_text" href="#" data-reveal-id="show_task_<%=task.id%>"> <%=task.what%></a><br />
 	<% end %>
-	<input type="submit" value="submit" />
 </form>
 
 
-<a href="#" data-reveal-id="addTask">Add a Task</a>
+<a href="#" data-reveal-id="addTask">Add Tasks</a>
 
 <div id="addTask" class="reveal-modal">
-  <h2>Add a Task</h2>
-  <form action="/goals/<%=params[:id]%>/tasks" method="post">
+  <h2>Add Tasks</h2>
+  <form action="/goals/<%=params[:id]%>/tasks" data-remote="true" method="post">
   	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  	<input type="text" name="what" placeholder="What" />
-  	<input type="text" name="where" placeholder="Where" />
-  	<input type="text" name="how" placeholder="How" />
+  	<input type="text" name="what" placeholder="What" class="task_field" />
+  	<input type="text" name="where" placeholder="Where" class="task_field" />
+  	<input type="text" name="how" placeholder="How" class="task_field" />
   	<input type="submit" value="Add">
+  	<p>Click on page behind when done.</p>
   </form>
 </div>
-
+<div id="task_modals">
 <% @goal.tasks.each do |task| %>
 <div id="show_task_<%=task.id%>" class="reveal-modal">
   <h2><%=task.what%></h2>
@@ -50,4 +50,5 @@
 
 </div>
 <% end %>
+</div>
 

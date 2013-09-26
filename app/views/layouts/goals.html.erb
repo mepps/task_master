@@ -16,25 +16,29 @@
 
 	</head>
 	<body>
-		<div id="header">
 			<nav class="top-bar">
 				<ul class="title-area">
-			    	<li class="name"><h1><a href="maggieepps.com"><%= User.find(session[:user_id]).first_name %>'s TaskMaster</a></h1></li>
+			    	<li class="name">
+				    	<h1>
+				    		<a href="#"><%= User.find(session[:user_id]).first_name %>'s TaskMaster</a>
+				    	</h1>
+			    	</li>
 		 		</ul>
 		 		<section class="top-bar-section">
 		 			<ul class="right">
+		 				<li class="divider"></li>
 		 				<li><a href="/signout">Log Off</a></li>
+						<li class="divider"></li>
 		 			</ul>
 		 		</section>
 			</nav>
-		</div>
 		<div id="wrapper">
 		<dl class="sub-nav">
 			<dd id="calendar"><a href="/users/<%=session[:user_id]%>">Calendar</a></dd>
 			<dd id="goals"><a href="/goals">Goals</a></dd>
 			<dd id="current"><a href="/goals/<%=session[:current_goal_id]%>">Current Goal</a></dd>
 		</dl>
-		<h1>Your long-term goal is: <%= User.find(session[:user_id]).long_term_goal %></h1>
+		<h1><%= User.find(session[:user_id]).long_term_goal %></h1>
 
 		<%= yield %>
 		</div>

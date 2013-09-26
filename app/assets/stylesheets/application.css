@@ -23,7 +23,7 @@
   color: LightGray;
 }
 
-ul
+ul.goal_task_list
 {
 	list-style: none;
 }

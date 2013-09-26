@@ -1,0 +1,11 @@
+	<section>
+		<p class="title" data-section-title><a href="#"><%=@goal.goal%></a></p>
+		<div class="content" data-section-content>
+			<p><ul>
+				<% @goal.tasks.each do |task| %>
+				<li><%=task.what%></li>
+				<% end %>
+			</ul></p>
+			<%=link_to 'View Goal', @goal %>
+		</div>
+	</section>

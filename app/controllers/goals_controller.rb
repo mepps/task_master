@@ -19,11 +19,16 @@ class GoalsController < ApplicationController
 		@goal.date = User.find(session[:user_id]).goals.maximum('date') + 1
 		@goal.save
 
-		redirect_to goals_path
+		respond_to do |format|
+			format.html{redirect_to goals_path}
+			format.js
+		end
+		
 	end
 
 	def get_goal
-		@goal = Goal.where(date: params[:date]).first
+		@goal = Goal.where("date = ? AND user_id = ?",  params[:date], session[:user_id]).first
+		@date = params[:date]
 		# redirect_to "/users/#{session[:user_id]}"
 
 	end

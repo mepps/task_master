@@ -11,24 +11,13 @@
 			$('#input_date').submit()
 
 		});
-		// $('#input_date').submit(function(){
-		// 	return false;
-		// });
 
 	});
 
 </script>
 <form id="input_date" action="/goals/get_goal" data-remote="true" method="post">
 	<input type="date" name="date" id="pick_date" class="datepicker datepicker-dropdown dropdown-menu"></input>
-  	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-</form>
+ </form>
 <div id="goal">
-	<% unless @goal == nil %>
-	<h1>Goal for <span id="date"><%=@goal.date%></span></h1>
-
-
-	<p><a href="/goals/show"><%=@goal.goal%></a></p>
-
-	<% end %>
 </div>
  

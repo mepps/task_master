@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		find_user = User.where(email_address: params[:email_address])
-		@current_user = find_user[0]
+		@current_user = User.where(email_address: params[:email_address]).first
 		unless @current_user == nil
 			if @current_user.authenticate(params[:password])
 				session[:logged_in] = true
