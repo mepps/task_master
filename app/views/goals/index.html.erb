@@ -6,20 +6,25 @@
 	<label>Add a Goal</label>
   	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 	<input type="hidden" name="_method" value="create" /> 
-	<input type="text" name="goal" />
+		<div class="row">
+		<input type="text" name="goal" class="goal_input"  />
+		<input type="date" name="date" class="goal_input" />
+	</div>
 	<input type="submit" value="Add" />
 </form>
+<p><%= flash[:alert] %></p>
 <div  class="goals_list section-container accordion" data-section="accordion">
 	<% @goals.each do |goal|%>
-	<section>
+	<section id="<%=goal.id%>">
 		<p class="title" data-section-title><a href="#"><%=goal.goal%></a></p>
 		<div class="content" data-section-content>
+			<%=goal.date%>
 			<p><ul class="goal_task_list">
 				<% goal.tasks.each do |task| %>
 				<li><%=task.what%></li>
 				<% end %>
 			</ul></p>
-			<%=link_to 'View Goal', goal %>
+			<%=link_to '[view]', goal %> <%=link_to '[delete]', goal, :method => :delete, :class => :destroy, remote: true %>
 		</div>
 	</section>
 	<% end %>

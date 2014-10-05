@@ -9,7 +9,16 @@ class SessionsController < ApplicationController
 				session[:logged_in] = true
 				session[:user_id] = @current_user.id
 				current_goal = @current_user.goals.where("date = '#{Date.today}'").first
-				session[:current_goal_id] = current_goal.id unless current_goal == nil
+				if current_goal == nil
+					 current_goal = @current_user.goals.where("date > '#{Date.today}'").first
+					 unless current_goal == nil
+					 	session[:current_goal_id] = current_goal.id
+					 else
+					 	session[:current_goal_id] = ""
+					 end
+				else
+					session[:current_goal_id] = current_goal.id
+				end
 				redirect_to @current_user
 			else
 				redirect_to new_session_path, alert: "Either email address or password is incorrect."

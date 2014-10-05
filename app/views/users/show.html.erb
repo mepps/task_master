@@ -1,13 +1,7 @@
 <script>
 	$(document).ready(function(){
 		$('#calendar').addClass('active');
-		$('#goal').hide();
 		$('#pick_date').change(function(){
-			$('#goal').show();
-			var date = $(this).val();
-			var dateArr = date.split("-");
-			date = dateArr[1] + "-" + dateArr[2] + "-" + dateArr[0];
-			$('#date').text(date);
 			$('#input_date').submit()
 
 		});

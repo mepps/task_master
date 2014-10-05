@@ -12,6 +12,7 @@ root :to => "sessions#new"
     match "/signin", :to => 'sessions#new'
     match "/signout", :to => 'sessions#destroy'
     post "/goals/get_goal"
+    get "/goals/no_goal"
 
 
   # The priority is based upon order of creation:

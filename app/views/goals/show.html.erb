@@ -7,11 +7,15 @@
 		    {
 		    	selector = "#" + $(this).val();
 		        $(selector).addClass('done');
+		        $(selector).siblings('.done_value').val(1);
+		        $(selector).parent().submit();
 		    }
 		    else
 		    {
 		    	selector = "#" + $(this).val();
 		        $(selector).removeClass('done');
+		        $(selector).siblings('.done_value').val(0);
+		        $(selector).parent().submit();
 		    }    
 		});
 });
@@ -19,12 +23,16 @@
 </script>
 <h3><%=@goal.goal%></h3>
 <h3><%=@goal.date.strftime("%m/%d/%Y") %></h3>
-<form id="tasks" data-remote="true" action="/goals" method="post">
+<div class="tasks">
 	<% @goal.tasks.each do |task| %>
-	<input type="checkbox" class="task" name="task" value="<%=task.id%>" /><a id="<%=task.id%>" class="task_text" href="#" data-reveal-id="show_task_<%=task.id%>"> <%=task.what%></a><br />
+	<form class="tasks" data-remote="true" action="/goals/<%=@goal.id%>/tasks/<%=task.id%>" method="post">
+		<input type="hidden" name="_method" value="put" />
+		<input type="hidden" class="done_value" name="done" value="" />
+		<input type="checkbox" class="task" name="task_id" <%= 'checked="checked"' if task.done==1 %> value="<%=task.id%>" /><a id="<%=task.id%>" class="<%= 'done' if task.done == 1 %> task_text" href="#" data-reveal-id="show_task_<%=task.id%>"> <%=task.what%> 
+		<%=link_to '[delete]', "/goals/#{@goal.id}/tasks/#{task.id}", confirm: "Are you sure you want to delete #{task.what}?", :method => :delete, :class => :destroy, remote: true %> </a><br />
+	</form>
 	<% end %>
-</form>
-
+</div>
 
 <a href="#" data-reveal-id="addTask">Add Tasks</a>
 
@@ -36,14 +44,14 @@
   	<input type="text" name="where" placeholder="Where" class="task_field" />
   	<input type="text" name="how" placeholder="How" class="task_field" />
   	<input type="submit" value="Add">
-  	<p>Click on page behind when done.</p>
+  	<p>Click on page behind when done entering tasks.</p>
   </form>
 </div>
 <div id="task_modals">
 <% @goal.tasks.each do |task| %>
 <div id="show_task_<%=task.id%>" class="reveal-modal">
   <h2><%=task.what%></h2>
-  <h3>Where<h3>
+  <h3>Where</h3>
   <p><%=task.where%></p>
   <h3>How</h3>
   <p><%=task.how%></p>
@@ -51,4 +59,7 @@
 </div>
 <% end %>
 </div>
+<br />
+<br />
+<strong><%=link_to 'Delete this goal?', @goal, confirm: "Are you quite certain you want to delete this goal?", :method => :delete, :class => :destroy %></strong>
 

@@ -1,4 +1,4 @@
-	<section>
+	<section id="<%=@goal.id%>">
 		<p class="title" data-section-title><a href="#"><%=@goal.goal%></a></p>
 		<div class="content" data-section-content>
 			<p><ul>
@@ -6,6 +6,6 @@
 				<li><%=task.what%></li>
 				<% end %>
 			</ul></p>
-			<%=link_to 'View Goal', @goal %>
+			<%=link_to '[view]', @goal %> <%=link_to '[delete]', @goal, :method => :delete, :class => :destroy, remote: true %>
 		</div>
 	</section>

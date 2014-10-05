@@ -1,1 +1,5 @@
-	<input type="checkbox" class="task" name="task" value="<%=@task.id%>" /><a id="<%=@task.id%>" class="task_text" href="#" data-reveal-id="show_task_<%=@task.id%>"> <%=@task.what%></a><br />
+	<form class="tasks" data-remote="true" action="/goals/<%=@task.goal.id%>/tasks/<%=@task.id%>" method="post">
+		<input type="hidden" name="_method" value="put" />
+		<input type="hidden" class="done_value" name="done" value="" />
+		<input type="checkbox" class="task" name="task_id" <%= 'checked="checked"' if @task.done==1 %> value="<%=@task.id%>" /><a id="<%=@task.id%>" class="<%= 'done' if @task.done == 1 %> task_text" href="#" data-reveal-id="show_task_<%=@task.id%>"> <%=@task.what%> <%=link_to '[delete]', "/goals/#{@task.goal.id}/tasks/#{@task.id}", confirm: "Are you sure you want to delete #{@task.what}?", :method => :delete, :class => :destroy, remote: true %></a><br />
+	</form>

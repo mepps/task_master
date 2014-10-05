@@ -1,11 +1,12 @@
 <h1>Register</h1>
 
-<div id="errors"><ul>
+<div id="errors">
+	<ul>
 <%unless flash[:alert] == nil
- flash[:alert].each do |message|%>
- <li><%=message%>.</li>
-	
-<% end %></ul> 
+	flash[:alert].each do |message|%>
+ 		<li style="display: inline-block; background-color: orange; color:white; "><%=message%>.</li>	
+	<% end %>
+	</ul> 
 <% end %>
 </div>
 

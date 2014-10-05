@@ -1,11 +1,11 @@
 	<%unless @goal == nil %>
-	<h1>Goal for <span id="date"><%=@date%></span></h1>
+	<h1>Goal for <span id="date"><%=@goal.date.strftime("%m/%d/%Y")%></span></h1>
 
 
 	<p><a href="/goals/<%=@goal.id%>"><%=@goal.goal%></a></p>
 	
 	<% else %>
-	<h1>Goal for <span id="date"><%=@date%></span></h1>
+	<h1>Goal for <span id="date_string"><%=@date%></span></h1>
 	<p>No goal for this date yet. <a href="/goals">See your goals list?</a>
 	<% end %>
 
