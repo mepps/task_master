@@ -16,7 +16,11 @@ class GoalsController < ApplicationController
 
 	def create
 		@goal = User.find(session[:user_id]).goals.new(goal: params[:goal])
-		@goal.date = User.find(session[:user_id]).goals.maximum('date') + 1
+		if User.find(session[:user_id]).goals.maximum('date')
+			@goal.date = User.find(session[:user_id]).goals.maximum('date') + 1
+		else
+			@goal.date = Date.today
+		end
 		@goal.save
 
 		respond_to do |format|
