@@ -18,7 +18,7 @@
 	<section id="<%=goal.id%>">
 		<p class="title" data-section-title><a href="#"><%=goal.goal%></a></p>
 		<div class="content" data-section-content>
-			<%=goal.date%>
+			<%=goal.date.strftime("%m/%d/%Y")%>
 			<p><ul class="goal_task_list">
 				<% goal.tasks.each do |task| %>
 				<li><%=task.what%></li>
