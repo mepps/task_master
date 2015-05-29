@@ -25,16 +25,11 @@ class GoalsController < ApplicationController
 		else
 			@goal.date = params[:date]
     end
-		respond_to do |format|
-			format.html{redirect_to goals_path}
-			format.js
-		end
 		if @goal.save
 			respond_to do |format|
 				format.html{redirect_to goals_path}
 				format.js
 			end
-		# end	
 		else 
 			redirect_back flash[:alert] == 'error'
 		end	
