@@ -24,6 +24,9 @@ class GoalsController < ApplicationController
 			end
 		else
 			@goal.date = params[:date]
+		respond_to do |format|
+			format.html{redirect_to goals_path}
+			format.js
 		end
 		if @goal.save
 			respond_to do |format|

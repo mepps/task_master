@@ -17,7 +17,7 @@ layout :resolve_layout
 	end
 
 	def create
-		@user = User.new(first_name: params[:first_name], last_name: params[:last_name], email_address: params[:email_address], long_term_goal: params[:long_term_goal], password: params[:password])
+		@user = User.new(params['user'])
 		if @user.save
 			redirect_to @user
 		else
