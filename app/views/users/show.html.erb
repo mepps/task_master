@@ -4,13 +4,15 @@
 		$('#pick_date').change(function(){
 			$('#input_date').submit()
 
-		});
-
+      });
+    $('.datepicker').datepicker();
+    $('.datepicker').datepicker("option", "dateFormat", "yy-mm-dd");
+    $('.datepicker').datepicker("setDate", (new Date()));
+    $('#input_date').submit();
 	});
-
 </script>
 <form id="input_date" action="/goals/get_goal" data-remote="true" method="post">
-	<input type="date" name="date" id="pick_date" class="datepicker datepicker-dropdown dropdown-menu"></input>
+  <input type="text" name="date" value="<%= Date.today %>" id="pick_date" class="datepicker datepicker-dropdown dropdown-menu"></input>
  </form>
 <div id="goal">
 </div>
